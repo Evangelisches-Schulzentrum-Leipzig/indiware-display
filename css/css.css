@@ -7,11 +7,15 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-600: oklch(57.7% 0.245 27.325);
+    --color-blue-400: oklch(70.7% 0.165 254.624);
     --color-blue-700: oklch(48.8% 0.243 264.376);
+    --color-rose-600: oklch(58.6% 0.253 17.585);
     --color-gray-300: oklch(87.2% 0.01 258.338);
+    --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
+    --text-xs: 0.75rem;
+    --text-xs--line-height: calc(1 / 0.75);
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
     --text-base: 1rem;
@@ -171,8 +175,8 @@
   }
 }
 @layer utilities {
-  .row-span-full {
-    grid-row: 1 / -1;
+  .col-span-full {
+    grid-column: 1 / -1;
   }
   .flex {
     display: flex;
@@ -180,14 +184,11 @@
   .grid {
     display: grid;
   }
-  .w-fit {
-    width: fit-content;
-  }
   .w-full {
     width: 100%;
   }
-  .cursor-pointer {
-    cursor: pointer;
+  .grid-cols-\[repeat\(2\,1fr\)\] {
+    grid-template-columns: repeat(2,1fr);
   }
   .grid-rows-\[repeat\(2\,min-content\)\] {
     grid-template-rows: repeat(2,min-content);
@@ -198,26 +199,17 @@
   .justify-between {
     justify-content: space-between;
   }
-  .gap-y-1 {
-    row-gap: calc(var(--spacing) * 1);
+  .gap-x-4 {
+    column-gap: calc(var(--spacing) * 4);
   }
-  .rounded {
-    border-radius: 0.25rem;
+  .gap-y-2 {
+    row-gap: calc(var(--spacing) * 2);
   }
-  .bg-blue-700 {
-    background-color: var(--color-blue-700);
-  }
-  .px-6 {
-    padding-inline: calc(var(--spacing) * 6);
-  }
-  .py-4 {
-    padding-block: calc(var(--spacing) * 4);
+  .pe-4 {
+    padding-inline-end: calc(var(--spacing) * 4);
   }
   .text-center {
     text-align: center;
-  }
-  .text-nowrap {
-    text-wrap: nowrap;
   }
 }
 body {
@@ -243,47 +235,71 @@ input[type=checkbox] {
   padding-block: calc(var(--spacing) * 2);
 }
 .period-number {
+  margin-bottom: calc(var(--spacing) * 2);
   --tw-font-weight: var(--font-weight-bold);
   font-weight: var(--font-weight-bold);
 }
 .lesson-container {
   display: flex;
+  flex-wrap: wrap;
+  column-gap: calc(var(--spacing) * 4);
+  row-gap: calc(var(--spacing) * 4);
+  padding-left: calc(var(--spacing) * 4);
 }
 .lesson-details {
-  margin-left: calc(var(--spacing) * 4);
+  display: flex;
+  min-width: calc(var(--spacing) * 24);
+  flex-direction: column;
+  row-gap: calc(var(--spacing) * 1);
+  border-radius: 0.25rem;
+  border-inline-start-style: var(--tw-border-style);
+  border-inline-start-width: 4px;
+  border-color: var(--color-blue-700);
+  background-color: var(--color-blue-400);
+  padding: calc(var(--spacing) * 2);
+  color: var(--color-black);
 }
 .subject {
   --tw-font-weight: var(--font-weight-semibold);
   font-weight: var(--font-weight-semibold);
 }
-.subject.changed {
-  --tw-font-weight: var(--font-weight-semibold);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-red-600);
-}
 .teacher {
   font-size: var(--text-sm);
   line-height: var(--tw-leading, var(--text-sm--line-height));
-}
-.teacher.changed {
-  --tw-font-weight: var(--font-weight-semibold);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-red-600);
 }
 .room {
   font-size: var(--text-sm);
   line-height: var(--tw-leading, var(--text-sm--line-height));
 }
-.room.changed {
-  --tw-font-weight: var(--font-weight-semibold);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-red-600);
-}
 .info {
-  font-size: var(--text-sm);
-  line-height: var(--tw-leading, var(--text-sm--line-height));
-  color: var(--color-red-600);
+  font-size: var(--text-xs);
+  line-height: var(--tw-leading, var(--text-xs--line-height));
   font-style: italic;
+}
+.info, .changed {
+  width: fit-content;
+  border-radius: 0.25rem;
+  background-color: var(--color-rose-600);
+  padding-inline: calc(var(--spacing) * 1);
+  padding-block: calc(var(--spacing) * 0.5);
+  color: var(--color-white);
+}
+#class-selection {
+  display: grid;
+  height: fit-content;
+  width: 300px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: calc(var(--spacing) * 1);
+  row-gap: calc(var(--spacing) * 1);
+}
+.class-option {
+  min-width: fit-content;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: var(--color-blue-700);
+  padding-inline: calc(var(--spacing) * 4);
+  padding-block: calc(var(--spacing) * 2);
+  text-wrap: nowrap;
 }
 * {
   scrollbar-width: thin;

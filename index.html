@@ -10,9 +10,9 @@
         <title>Indiware Display</title>
     </head>
     <body class="flex justify-between">
-        <div id="main" class="grid grid-rows-[repeat(2,min-content)] w-full">
-            <div id="class-name" class="row-span-full text-center">Klasse 10a</div>
-            <div id="plan_today" class="flex flex-col">
+        <div id="main" class="grid grid-cols-[repeat(2,1fr)] grid-rows-[repeat(2,min-content)] gap-y-2 gap-x-4 pe-4 w-full">
+            <div id="class-name" class="col-span-full text-center">Klasse 10a</div>
+            <div id="plan_today" class="flex flex-col w-full">
                 <div class="plan-header">
                     <div class="plan-header-date">Montag, 01.01.2024</div>
                 </div>
@@ -49,9 +49,46 @@
                         </div>
                     </div>
                 </div>
+            </div><div id="plan_next" class="flex flex-col w-full">
+                <div class="plan-header">
+                    <div class="plan-header-date">Montag, 02.01.2024</div>
+                </div>
+                <div class="period-container flex flex-col">
+                    <div class="period-entry">
+                        <div class="period-number">Stunde 1</div>
+                        <div class="lesson-container">
+                            <div class="lesson-details">
+                                <div class="subject">Inf</div>
+                                <div class="teacher">Tec</div>
+                                <div class="room">4.12</div>
+                                <div class="info">Info: rgggt</div>
+                            </div>
+                            <div class="lesson-details">
+                                <div class="subject">Inf</div>
+                                <div class="teacher">Tec</div>
+                                <div class="room">4.12</div>
+                            </div>
+                            <div class="lesson-details">
+                                <div class="subject changed">Inf</div>
+                                <div class="teacher changed">Tec</div>
+                                <div class="room changed">4.12</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="period-entry">
+                        <div class="period-number">Stunde 2</div>
+                        <div class="lesson-container">
+                            <div class="lesson-details">
+                                <div class="subject">Inf</div>
+                                <div class="teacher">Tec</div>
+                                <div class="room">4.12</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="class-selection" class="flex flex-col w-fit gap-y-1">
+        <div id="class-selection">
         </div>
         <script src="js/js.js"></script>
     </body>

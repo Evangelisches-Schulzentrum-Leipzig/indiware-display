@@ -15,36 +15,35 @@ input[type=checkbox] {
     @apply border-b border-gray-300 py-2;
 }
 .period-number {
-    @apply font-bold;
+    @apply font-bold mb-2;
 }
 .lesson-container {
-    @apply flex;
+    @apply flex flex-wrap gap-x-4 gap-y-4 pl-4;
 }
 .lesson-details {
-    @apply ml-4;
+    @apply flex flex-col gap-y-1 p-2 bg-blue-400 text-black border-s-4 border-blue-700 rounded min-w-24;
 }
 .subject {
     @apply font-semibold;
 }
-.subject.changed{
-    @apply text-red-600 font-semibold;
-}
 .teacher {
     @apply text-sm;
-}
-.teacher.changed{
-    @apply text-red-600 font-semibold;
 }
 .room {
     @apply text-sm;
 }
-.room.changed{
-    @apply text-red-600 font-semibold;
-}
 .info {
-    @apply text-sm text-red-600 italic;
+    @apply text-xs italic;
 }
-.changed {
+.info, .changed {
+    @apply px-1 py-0.5 bg-rose-600 text-white w-fit rounded;
+}
+
+#class-selection {
+    @apply grid grid-cols-2 gap-y-1 w-[300px] gap-x-1 h-fit
+}
+.class-option {
+    @apply bg-blue-700 text-nowrap px-4 py-2 rounded cursor-pointer min-w-fit
 }
 
 /* ===== Scrollbar CSS ===== */

@@ -86,9 +86,8 @@ function splitDayPlanByPeriods(dayPlan) {
 function displayClasses() {
     const classContainer = document.querySelector('#class-selection');
     classContainer.innerHTML = '';
-    var baseHtml = '<div class="class-option bg-blue-700 text-nowrap px-6 py-4 rounded cursor-pointer">Klasse ';
     classes.forEach(classObj => {
-        classContainer.innerHTML += baseHtml + classObj.class + '</div>';
+        classContainer.innerHTML += '<div class="class-option" style="grid-column:' + (/[^0-9]/.test(classObj.class) ? "" : "1 / -1") +  ';">Klasse ' + classObj.class + '</div>';
     });
 }
 
@@ -118,7 +117,7 @@ function displayPlan(planData) {
     var date = new Date(today);
     const planContainer = document.querySelector('#plan_today');
     planContainer.querySelector('.plan-header-date').innerHTML = date.toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: '2-digit' });
-    var lessonCon = planContainer.querySelector('.periods-container');
+    var lessonCon = planContainer.querySelector('.period-container');
     lessonCon.innerHTML = '';
     for (let period = 0; period < planToday.length; period++) {
         const periodEntries = planToday[period] || [];
