@@ -9,8 +9,50 @@
 
         <title>Indiware Display</title>
     </head>
-    <body>
-        
+    <body class="flex justify-between">
+        <div id="main" class="grid grid-rows-[repeat(2,min-content)] w-full">
+            <div id="class-name" class="row-span-full text-center">Klasse 10a</div>
+            <div id="plan_today" class="flex flex-col">
+                <div class="plan-header">
+                    <div class="plan-header-date">Montag, 01.01.2024</div>
+                </div>
+                <div class="period-container flex flex-col">
+                    <div class="period-entry">
+                        <div class="period-number">Stunde 1</div>
+                        <div class="lesson-container">
+                            <div class="lesson-details">
+                                <div class="subject">Inf</div>
+                                <div class="teacher">Tec</div>
+                                <div class="room">4.12</div>
+                                <div class="info">Info: rgggt</div>
+                            </div>
+                            <div class="lesson-details">
+                                <div class="subject">Inf</div>
+                                <div class="teacher">Tec</div>
+                                <div class="room">4.12</div>
+                            </div>
+                            <div class="lesson-details">
+                                <div class="subject changed">Inf</div>
+                                <div class="teacher changed">Tec</div>
+                                <div class="room changed">4.12</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="period-entry">
+                        <div class="period-number">Stunde 2</div>
+                        <div class="lesson-container">
+                            <div class="lesson-details">
+                                <div class="subject">Inf</div>
+                                <div class="teacher">Tec</div>
+                                <div class="room">4.12</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="class-selection" class="flex flex-col w-fit gap-y-1">
+        </div>
         <script src="js/js.js"></script>
     </body>
 </html>

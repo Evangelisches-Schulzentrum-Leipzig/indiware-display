@@ -8,6 +8,45 @@ input[type=checkbox] {
     @apply rounded
 }
 
+.period-container {
+    @apply flex flex-col;
+} 
+.period-entry {
+    @apply border-b border-gray-300 py-2;
+}
+.period-number {
+    @apply font-bold;
+}
+.lesson-container {
+    @apply flex;
+}
+.lesson-details {
+    @apply ml-4;
+}
+.subject {
+    @apply font-semibold;
+}
+.subject.changed{
+    @apply text-red-600 font-semibold;
+}
+.teacher {
+    @apply text-sm;
+}
+.teacher.changed{
+    @apply text-red-600 font-semibold;
+}
+.room {
+    @apply text-sm;
+}
+.room.changed{
+    @apply text-red-600 font-semibold;
+}
+.info {
+    @apply text-sm text-red-600 italic;
+}
+.changed {
+}
+
 /* ===== Scrollbar CSS ===== */
   /* Firefox */
   * {
