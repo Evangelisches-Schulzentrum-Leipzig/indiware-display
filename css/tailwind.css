@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+body {
+    @apply bg-[#121212] text-white text-base py-4 px-2;
+    font-family: "Montserrat"
+}
+input[type=checkbox] {
+    @apply rounded
+}
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #505050 transparent;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #505050;
+    border-radius: 10px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: #333333;
+  }
+  *::-webkit-scrollbar-thumb:active {
+    background: #333333;
+  }
+  *::-webkit-scrollbar-button {
+    width: 7px;
+    height: 7px;
+  }
