@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
 body {
-    @apply bg-[#121212] text-white text-base py-4 px-2;
+    @apply bg-[#121212] text-white text-base px-2;
     font-family: "Montserrat"
 }
 input[type=checkbox] {
     @apply rounded
 }
 
+#main {
+    @apply grid grid-cols-[repeat(2,1fr)] grid-rows-[repeat(2,min-content)] gap-y-2 gap-x-4 pe-4 py-4 w-full max-h-screen;
+}
 .period-container {
-    @apply flex flex-col;
+    @apply flex flex-col max-h-[calc(100vh-24px-0.5rem-24px-1rem-1rem)] overflow-y-auto;
 } 
 .period-entry {
     @apply border-b border-gray-300 py-2;
@@ -40,10 +43,10 @@ input[type=checkbox] {
 }
 
 #class-selection {
-    @apply grid grid-cols-2 gap-y-1 w-[300px] gap-x-1 h-fit
+    @apply grid grid-cols-2 gap-y-1 w-1/4 gap-x-1 h-screen py-4
 }
 .class-option {
-    @apply bg-blue-700 text-nowrap px-4 py-2 rounded cursor-pointer min-w-fit
+    @apply bg-blue-700 text-nowrap px-4 h-full rounded cursor-pointer min-w-fit flex items-center justify-center;
 }
 
 /* ===== Scrollbar CSS ===== */
