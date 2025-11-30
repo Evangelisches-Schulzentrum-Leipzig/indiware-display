@@ -111,11 +111,35 @@ function displayClasses() {
  * @param {Object<string, LessonEntry[][]>} planData An object mapping ISO date strings ("YYYY-MM-DD") to arrays of periods. Each period is an array of LessonEntry objects.
  */
 function displayPlan(planData) {
-    var today = "2025-12-01";
-
+    console.log(planData);
+    var today = new Date().toISOString().split('T')[0];
     var planToday = planData[today];
-    var date = new Date(today);
-    const planContainer = document.querySelector('#plan_today');
+    const planTodayContainer = document.querySelector('#plan_today');
+    if (!planToday) {
+        displayDailyNoPlan(new Date(), planTodayContainer);
+    } else {
+        displayDailyPlan({plan: planToday, date: new Date()}, planTodayContainer);
+    }
+
+    var nextDay = Object.keys(planData).find(dateStr => new Date(dateStr).getTime() > new Date().getTime());
+    const planNextContainer = document.querySelector('#plan_next');
+    if (!nextDay) {
+        displayDailyNoPlan(new Date(new Date().setDate(new Date().getDate() + 1)), planNextContainer);
+    } else {
+        displayDailyPlan({plan: planData[nextDay], date: new Date(nextDay)}, planNextContainer);
+    }
+}
+
+/**
+ * 
+ * @param {Object} dayPlan
+ * @param {LessonEntry[][]} dayPlan.plan
+ * @param {Date} dayPlan.date 
+ * @param {HTMLElement} planContainer
+ */
+function displayDailyPlan(dayPlan, planContainer) {
+    var planToday = dayPlan.plan;
+    var date = dayPlan.date;
     planContainer.querySelector('.plan-header-date').innerHTML = date.toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: '2-digit' });
     var lessonCon = planContainer.querySelector('.period-container');
     lessonCon.innerHTML = '';
@@ -138,6 +162,12 @@ function displayPlan(planData) {
         periodHtml += '</div>';
         lessonCon.innerHTML += periodHtml;        
     }
+}
+
+function displayDailyNoPlan(date, planContainer) {
+    planContainer.querySelector('.plan-header-date').innerHTML = date.toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: '2-digit' });
+    var lessonCon = planContainer.querySelector('.period-container');
+    lessonCon.innerHTML = '<div class="no-plan-message">Für diesen Tag liegt kein Plan vor.</div>';
 }
 
 function sortClassNames(a, b) {
