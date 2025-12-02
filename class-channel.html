@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="css/font.css">
+
+        <title>Class from BC</title>
+    </head>
+    <body style="background: #121212; color: white; font-size: 30px; font-family: Montserrat; display: flex; justify-content: center; align-items: center; height: 100vh; padding: 0; margin: 0;">
+        <span id="class-name">Klasse auswählen</span>
+        <script> 
+            const channelName = new URLSearchParams(window.location.search).get('class-broadcast-channel') || 'class-name';
+            const BC = new BroadcastChannel(channelName);
+            BC.onmessage = (event) => {
+                document.getElementById('class-name').innerText = "Klasse " + event.data;
+            };
+            setInterval(() => {
+                BC.postMessage("request-class");
+            }, 1000);
+        </script>
+    </body>
+</html>

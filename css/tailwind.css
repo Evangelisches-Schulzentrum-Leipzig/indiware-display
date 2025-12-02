@@ -11,6 +11,12 @@ input[type=checkbox] {
 #main {
     @apply grid grid-cols-[repeat(2,1fr)] grid-rows-[repeat(2,min-content)] gap-y-2 gap-x-4 pe-4 py-4 w-full max-h-screen;
 }
+#class-name {
+    @apply col-span-full text-center text-2xl
+}
+.plan-header-date {
+    @apply text-xl
+}
 .period-container {
     @apply flex flex-col max-h-[calc(100vh-24px-0.5rem-24px-1rem-1rem)] overflow-y-auto;
 } 
@@ -42,11 +48,17 @@ input[type=checkbox] {
     @apply px-1 py-0.5 bg-rose-600 text-white w-fit rounded;
 }
 
+#class-selection-con {
+    @apply w-1/4 h-screen pt-4 text-[14px] flex flex-col
+}
 #class-selection {
-    @apply grid grid-cols-2 gap-y-1 w-1/4 gap-x-1 h-screen py-4
+    @apply grid grid-cols-2 gap-y-1 gap-x-1 h-full w-full
 }
 .class-option {
     @apply bg-blue-700 text-nowrap px-4 h-full rounded cursor-pointer min-w-fit flex items-center justify-center;
+}
+#information-links {
+    @apply text-xs mt-4 flex items-center gap-x-2;
 }
 
 /* ===== Scrollbar CSS ===== */

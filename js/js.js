@@ -1,9 +1,23 @@
 const apiUrl = new URLSearchParams(window.location.search).get('apiUrl') || "http://localhost:8081";
 const institutionID = new URLSearchParams(window.location.search).get('institutionID') || 'evaschulze';
 const configType = new URLSearchParams(window.location.search).get('userType') || 'isStudent';
+const channelName = new URLSearchParams(window.location.search).get('class-broadcast-channel') || 'class-name';
+
+if (new URLSearchParams(window.location.search).get('hide-class-name') !== null) {
+    document.querySelector("#class-name").style.display = "none";
+}
 
 let classes = [];
 let userConfig;
+var currentClass = null;
+const BC = new BroadcastChannel(channelName);
+
+BC.onmessage = (event) => {
+    console.log("Received message:", event.data);
+    if (event.data == "request-class" && currentClass != null) {
+        BC.postMessage(currentClass);
+    }
+};
 
 (async () => {
     var defaultConfig = await (await fetch(apiUrl + '/vp-institution/' + institutionID + '/config/default')).json();
@@ -15,13 +29,22 @@ let userConfig;
 
     document.querySelectorAll('.class-option').forEach((element, index) => {
         element.addEventListener('click', async () => {
+            currentClass = classes[index].class;
             var planData = await getPlanforClass(classes[index].class);
 
             document.querySelector("#class-name").innerHTML = "Klasse " + classes[index].class;
 
             displayPlan(splitPlanData(planData));
+        BC.postMessage(currentClass);
         });
     });
+
+    currentClass = classes[0].class;
+    var planData = await getPlanforClass(classes[0].class);
+
+    document.querySelector("#class-name").innerHTML = "Klasse " + classes[0].class;
+
+    displayPlan(splitPlanData(planData));
 })();
 
 function getClasses(userConfig) {
@@ -86,6 +109,7 @@ function splitDayPlanByPeriods(dayPlan) {
 function displayClasses() {
     const classContainer = document.querySelector('#class-selection');
     classContainer.innerHTML = '';
+    classes.sort((a, b) => -sortClassNames(a.class, b.class));
     classes.forEach(classObj => {
         classContainer.innerHTML += '<div class="class-option" style="grid-column:' + (/[^0-9]/.test(classObj.class) ? "" : "1 / -1") +  ';">Klasse ' + classObj.class + '</div>';
     });
