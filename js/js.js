@@ -1,5 +1,5 @@
-const apiUrl = "http://localhost:8081";
-const institutionID = "evaschulze";
+const apiUrl = new URLSearchParams(window.location.search).get('apiUrl') || "http://localhost:8081";
+const institutionID = new URLSearchParams(window.location.search).get('institutionID') || 'evaschulze';
 const configType = new URLSearchParams(window.location.search).get('userType') || 'isStudent';
 
 let classes = [];
